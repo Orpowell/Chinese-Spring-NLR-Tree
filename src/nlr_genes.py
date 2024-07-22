@@ -2,8 +2,6 @@ import pandas as pd
 from Bio import SeqIO
 from Bio import Entrez
 from Bio import GenBank
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 pd.options.mode.copy_on_write = True
 
