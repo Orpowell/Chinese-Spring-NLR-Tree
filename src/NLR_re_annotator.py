@@ -68,22 +68,7 @@ def write_itol_star_nbd_nbarcs(nbs_nbarc_nlrs):
             identifiers = protein.name.split("_")
             name = f"{identifiers[3]}_{identifiers[4]}"
             output.write(f"{name},1\n")
-
-def write_itol_range_nbd_nbarcs(nbs_nbarc_nlrs):
-    with open("itol_nbs_nbarc_range.txt", "w+") as output:
-        output.write("DATASET_RANGE\n")
-        output.write("SEPARATOR COMMA\n")
-        output.write("DATASET_LABEL,Kinase Domains\n")
-        output.write("COLOR,#00ff00\n")
-        output.write("FIELD_SHAPES,3\n")
-        output.write("FIELD_LABELS,kinase_present\n")
-        output.write("FIELD_COLORS,#ff0000\n")
-        output.write("DATA\n")
-
-        names = [n.protein for n in nbs_nbarc_nlrs]
             
-        clade: str = "|".join(names)
-        output.write(f"{clade},{clade},#FF0000\n")
 
 def itol_nbd_nbarc(NLRS: str, NLR_MOTIFS: str, proteins: set[str]):
     all_motifs = pd.read_csv(NLR_MOTIFS, skiprows=2, header=None, sep="\t")
