@@ -1,4 +1,5 @@
 import pandas as pd
+import logging
 
 pd.options.mode.copy_on_write = True
 
@@ -91,6 +92,8 @@ def itol_nbd_nbarc(NLRS: str, NLR_MOTIFS: str, proteins: set[str]):
             )
 
     unique_nlrs = [nlr for nlr in NLR_array if nlr.protein in proteins]
+
+
         
     [n.run(all_motifs) for n in unique_nlrs]
 
@@ -98,6 +101,6 @@ def itol_nbd_nbarc(NLRS: str, NLR_MOTIFS: str, proteins: set[str]):
 
     nbs_nbarc_count = len(nbs_nbarc_nlrs)
 
-    print(f"NLRs Identified = {nbs_nbarc_count}")
+    logging.info(f"Identified NBD-NBARC NLRS: {nbs_nbarc_count}")
 
     write_itol_star_nbd_nbarcs(nbs_nbarc_nlrs=nbs_nbarc_nlrs)
