@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 from Bio import SeqIO
 from Bio import Entrez
@@ -19,7 +20,11 @@ def get_NLR_transcripts_simple(nlr_annotation: str) -> set[str]:
         names=["cds", "nlr", "domains", "start", "end", "strand", "motifs"],
     )
 
-    return set(nlr_df["cds"].to_list())
+    nlr_transcripts = nlr_df["cds"].to_list()
+
+    logging.info(f"Total Non-Redundant NLR Transcripts: {len(set(nlr_transcripts))}")
+
+    return nlr_transcripts
 
 
 def best_transcript_per_gene(cds: str, nlr_transcripts: set[str]) -> set[str]:
@@ -53,17 +58,11 @@ def find_nlr_protein_seqs(
     :return None: NLR protein sequences are written to a file
     """
 
-    nlrs = []
-
-    nlrs_added = 0
-    for record in SeqIO.parse(proteins, "fasta"):
-        if record.id in nlr_transcripts:
-            nlrs.append(record)
-            nlrs_added += 1
+    nlrs = [record for record in SeqIO.parse(proteins, "fasta") if record.id in nlr_transcripts]
 
     SeqIO.write(nlrs, output, "fasta")
 
-    print(f"{nlrs_added=}")
+    logging.info(f"Unique NLR Transcripts: {len(nlrs)}")
 
 
 def get_NLR_genes(
