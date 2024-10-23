@@ -1,18 +1,19 @@
-# XXX
+# NLR Finder
 
-XXX identifies and extracts the best (longest) protein sequence from transcripts annotated by NLR-annotator for phylogenetic analysis and visualisation with [iTOL](https://itol.embl.de/). Note this tool has only been tested on the Chinese Spring v2.1 Reference Genome and may not work for another genomes (see Issues). 
+NLR Finder identifies and extracts the best (longest) protein sequence from transcripts annotated by NLR-annotator for phylogenetic analysis and visualisation with [iTOL](https://itol.embl.de/). Note this tool has only been tested on the Chinese Spring v2.1 Reference Genome and may not work for another genomes (see Issues). 
 
 This code is based on an analysis performed by [Burkhard Steuernagel](https://github.com/steuernb/wheat_nlr/blob/master/java/src/PreparePhylogenetics.java) for [The NLR-Annotator Tool Enables Annotation of the Intracellular Immune Receptor Repertoire](https://doi.org/10.1104/pp.19.01273).
 
 ## Dependencies
 
-    Pandas
-    Biopython
+    Pandas v2.1.4
+    Biopython v1.78
     NLR-annotator v2.1 (required for NLR annotations)
+    iTOL v6
 
 ## Usage
 
-XXX can be run using the following command:
+NLR Finder can be run using the following command:
 
     python3 src/main.py \
     -c cds.fasta \
@@ -22,7 +23,7 @@ XXX can be run using the following command:
 
 ## Parameters
 
-The following parameters are required to run XXX:
+The following parameters are required to run NLR Finder:
 
 ### Required Parameters
 | parameter | description |
@@ -52,19 +53,19 @@ The following optional parameters can be provided to add cloned sequences and an
 | itol_nlr_labels.txt | iTOL annotations for sequences provided by --cloned_nlrs. The corresponding sequences in tree are labelled with the name provided in the tsv.|
 | itol_nbs_nbarc_stars.txt | iTOL annotations for sequences re-annotated as NBD-NBARC NLRs. The corresponding sequences in tree are denoated by a red star. |
 
-## Using XXX to build a Phyolgenetic Tree
+## Using NLR Finder to build a Phyolgenetic Tree
 
-The following is a mock analysis using XXX to create a phylogenetic tree of unique NLRs from a reference genome:
+The following is a mock analysis using NLR Finder to create a phylogenetic tree of unique NLRs from a reference genome:
 
 1. Run NLR-Annotator on reference cds
 
-2. Run XXX
+2. Run NLR Finder
 
-3. Generate multiple sequence alignment from XXX output
+3. Generate multiple sequence alignment from NLR Finder output
 
 4. Generate Phylogenetic Tree
 
-5. Load tree into [iTOL]() and visualise annotations from XXX
+5. Load tree into [iTOL](https://itol.embl.de) and visualise annotations from NLR Finder
 
 
 ## Questions and Issues
@@ -79,6 +80,6 @@ If you use this tool in your research please cite:
 
 - [Steuernagel et al.: The NLR-Annotator tool enables annotation of the intracellular immune receptor repertoire, Plant Physiology, 2020](https://www.ncbi.nlm.nih.gov/pubmed/32184345)
 
-- Chen et al, TBA
+- [Chen et al.: A wheat tandem kinase sensor activates an NLR helper to trigger immunity, 2024](https://doi.org/10.1101/2024.08.30.610287)
 
 
